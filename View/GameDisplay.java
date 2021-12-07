@@ -50,7 +50,7 @@ public class GameDisplay{
     System.out.println(Format.BOLD+Format.REVERSED+"Total: "+aCounter.getPathCost()+" "+Format.RESET);
   }
 
-  /**
+  /*
    * Main dialogue/screen to show if agent succeeds.
    */
   public void showAgentSuccess(){
@@ -64,7 +64,8 @@ public class GameDisplay{
      System.out.println("\n"+Colors.BLUE+"Gold Miner"+ Format.BOLD + Colors.RED+ " failed" + Format.RESET + " to find "+ Colors.YELLOW +"Gold " + Symbols.GOLD_SQUARE+ ".");
   }
 
-  /**
+
+  /*
    * Sets the reference mining area being observed
    * @param area mining area reference to check
    */
@@ -74,7 +75,7 @@ public class GameDisplay{
 
   /**
    * Displays the main mining area into the terminal.
-   */
+  */
   public void showMiningArea(){
     cls();
     System.out.print("     ");
@@ -94,9 +95,10 @@ public class GameDisplay{
       System.out.println();
       printHln();
     }
+    //System.out.println("\n"+mGrid); <-- print address
   }
 
-  /**
+  /*
    * Prints a horizontal or new line into the terminal.
    */
   public void printHln(){
@@ -107,9 +109,7 @@ public class GameDisplay{
 
   /**
   * This will clear the screen on console.
-  * <br>
   * REFERENCE:
-  * <br>
   * How to Clear Screen in Java - Javatpoint. (n.d.). Retrieved July 25, 2021, from https://www.javatpoint.com/how-to-clear-screen-in-java
   */
   public static void cls() {  
