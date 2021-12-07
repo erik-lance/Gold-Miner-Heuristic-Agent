@@ -1,0 +1,24 @@
+hi si erik ito
+
+idea lang, I was thinking of making a folder for the "squares"
+
+option 1:
+I was thinking na gawin natin yung GoldSquare and Pit as classes that extends to a certain "square" or "grid" class so that we can have each gridsquare as an "object" para we can call a function to just swap between grids and just check for if a grid contains the goldminer.
+
+option 2:
+if we're not going to do that, perhaps just a location checker might suffice? if we'll just do a grid array OR purely update lang the miner's location by changing the x and y values
+
+if it's option 2 we could also probably just handle everything inside a gameboard class? we'll just need an AI.java for the handling
+
+
+NOTES PART 2
+
+FOR THE SEARCHING PART mukhang we're using search trees nohh correct me if i'm wrongg
+
+kumbaga we'll just add a moveset na parang left forward or right and the machine finds the quickest path to the gold square
+
+if searching blindly though perhaps kailangan nagsesearch siya the WHOLE board so puro forward lang ata yun?
+
+-wawawawa d ko pa gets lesson e HAAHAH
+
+oks lang HAHAH medyo nag lag pero medyo nakita ko sabi mo iniintindi ko pa naman na rin lesson HAHAHAH just a guess lang sa gagawin

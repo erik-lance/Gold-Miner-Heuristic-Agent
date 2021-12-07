@@ -1,0 +1,58 @@
+{
+  "files": {
+    "BoardModel/GoldMiner.java": [
+      {
+        "id": "0a9f4bb1-40fa-48f1-a0d2-2d30b90398b3",
+        "line": 232,
+        "version": 8656,
+        "index": 6897
+      },
+      {
+        "id": "3c0f2af1-d395-442d-a96e-41d41fdb38c2",
+        "line": 233,
+        "version": 8656,
+        "index": 6899
+      }
+    ],
+    "Data/Node.java": [
+      {
+        "id": "6ea09aed-40d5-4293-87c1-36380ac6f01d",
+        "line": 2,
+        "version": 22484,
+        "index": 14
+      },
+      {
+        "id": "7a90b629-28b2-4081-beeb-45272490af26",
+        "line": 387,
+        "version": 22484,
+        "index": 11608
+      },
+      {
+        "id": "0de84407-feef-45f5-93be-0e869674d750",
+        "line": 391,
+        "version": 22484,
+        "index": 11652
+      },
+      {
+        "id": "3e0d63b0-a47d-4c67-8dfe-a6b4c9234672",
+        "line": 391,
+        "version": 22484,
+        "index": 11668
+      }
+    ],
+    "Data/Tree.java": [
+      {
+        "id": "671b0678-9103-4068-b20b-32f3ec8697ec",
+        "line": 18,
+        "version": 5320,
+        "index": 378
+      },
+      {
+        "id": "9ff18776-cfc4-4dc5-bc6f-b6fef4c6543e",
+        "line": 52,
+        "version": 5320,
+        "index": 1603
+      }
+    ]
+  }
+}
