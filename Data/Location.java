@@ -57,21 +57,6 @@ public class Location{
   public int c(){
     return nCol;
   }
-  
-  /*Setter for Row
-  
-  public void setR(int R){
-    nRow = R;
-  }
-
-  */
-
-  /*Setter for Column
-  
-  public void  setC(int C){
-    nCol = C;
-  }
-  */
 
   /**
   * For debugging purposes only

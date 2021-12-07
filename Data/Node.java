@@ -139,13 +139,12 @@ public class Node {
     //This is the accumulated cost after calculations.
     int accumCost = 1;
 
-    //Rule 7 add heuristic based on number of unkown tiles. 
+    //Rule add heuristic based on number of unkown tiles. 
     int numUnk = this.root.agent.getMemo().getUnknown();
 
-    //NEXT LINE OF DEFENSE IN SCANNING EMPTY SINCE IT DOESN"T WORK SA OTHER NODES (??)
+    //Assures the tile moved into is set empty.
     memoRef.setEmpty(aLoc);
 
-    
     //[Left Node] Scan Heuristics
     if (nodePos==0) {
       //Checks viability by scan's amount of tiles that can be uncovered.
@@ -173,7 +172,7 @@ public class Node {
       if (aFront == null)
         accumCost+= 1;
 
-      //Rule 9, if turn ends near unknown tile, remove punishment to reward scanning
+      //Rule, if turn ends near unknown tile, remove punishment to reward scanning
       if (memoRef.isNearUnknown(aLoc))
         accumCost -= this.turnCount;
 
@@ -186,8 +185,6 @@ public class Node {
 
         if (gNear != null) {
           gDist = memoRef.distance(aLoc, gNear, aDir);
-          //System.out.println("Turn: "+gNear.toString());
-          //System.out.println("Turn2: "+gDist);
           accumCost += gDist;
         }
       }
@@ -258,7 +255,6 @@ public class Node {
       
 
       int nDanger = rAgent.getMemo().getDangerLevel(rTile);
-      //System.out.println("Danger: "+nDanger);
       boolean exploredTile = miningRef.getTile(rTile).hasTravelled();
 
       if (getBcnLock()) {
@@ -267,8 +263,6 @@ public class Node {
 
         if (gNear != null) {
           gDist = memoRef.distance(aLoc, gNear, aDir);
-          //System.out.println("Move: "+gNear.toString());
-          //System.out.println("Move2: "+gDist);
           accumCost += gDist;
         }
       }
@@ -277,7 +271,6 @@ public class Node {
       //and if not in far column.
       if (numUnk > miningRef.getCol()/2) {
         if (aLoc.c() < miningRef.getCol()-1) {
-          //System.out.println("nic");
           if (aDir == 0) {
             accumCost +=7;
           }
@@ -293,11 +286,11 @@ public class Node {
         accumCost+= 10;
       }
 
-      //Rule 9 Beacon Lock move
+      //Rule Beacon Lock move
       if (this.lockMove)  { return 1; }
-      //Rule 1 Gold Lock move
+      //Rule Gold Lock move
       if (this.foundGold) { return 1; }
-      //Rule 3 and 4 If tile unknown, multiply by danger
+      //Rule and If tile unknown, multiply by danger
       if (nDanger > 0) { 
         //If pit and gold/bcn are same row/col, scan first
         if (rAgent.getMemo().getGoldLevel(rTile)>0) 
@@ -307,7 +300,7 @@ public class Node {
         else
           accumCost+= 5*nDanger; 
       }
-      //Rule 8 If tile is explored, +3*Number of traverses  
+      //Rule If tile is explored, +3*Number of traverses  
 
       if (exploredTile) { 
         int nTraverses = miningRef.getTile(aLoc).getTraverses();
@@ -319,10 +312,9 @@ public class Node {
       
       }
       
-      
     }
     
-    //Rule 7, unscanned tiles added to encourage scanning
+    //Rule, unscanned tiles added to encourage scanning
     return accumCost + numUnk;
   }
 
@@ -338,7 +330,6 @@ public class Node {
     /*---------- [SCAN] Left Node ----------*/
     if (!this.getScanDir(this.getAgent().getDir())) {
       Node scan = new Node(this);
-      //Location aLoc = scan.agent.getLoc();
       GoldMiner sAgent = scan.getAgent();
       Location sLoc = sAgent.getLoc();
       int sDir = sAgent.getDir();
@@ -346,12 +337,11 @@ public class Node {
       int scanType = sAgent.scan();
       
       scan.setScanDir(sAgent.getDir(), true);
-      //scan.setScan(true);
+
       //Note may interfere with beacon values. Locks gold.
       if (scanType==0) {
         scan.setGoldLock(true);
         scan.setLock(true);
-        //System.out.println("FOUND IT\n");
       }
 
       //If beacon found
@@ -361,7 +351,6 @@ public class Node {
       
       //COMPARE TILE SCANS W MEMORY
       int closestTile = sAgent.getMemo().getClosestType(sLoc, sAgent.getDir());
-      //What's happening is pit somehow takes priority...
 
       System.out.println("SCANTYPE[left]: "+scanType);
       System.out.println("CLOSESTT[left]: "+closestTile);
@@ -429,25 +418,6 @@ public class Node {
       move.setHeuristic(move.calculateHeuristic(2));
       move.agent.getMemo().setEmpty(move.agent.getLoc());
       this.rightNode = move;
-    }
-
-    /*
-     * These if statements signify end of game, therefore
-     * emptying children as there is no path anymore
-     */
-
-    //MOVED TO TREE
-    if (agent.getMA().getTile(agent.getLoc()) instanceof GoldSquare) {
-      //this.leftNode = null;
-      //this.midNode = null;
-      //this.rightNode = null;
-    }
-    else if (agent.getMA().getTile(agent.getLoc()) instanceof Pit) {
-      //this.leftNode = null;
-      //this.midNode = null;
-      //this.rightNode = null;
-    } else {
-
     }
   }
 
@@ -591,6 +561,11 @@ public class Node {
     return (this.leftNode==null && this.midNode==null && this.rightNode==null);
   }
 
+  /*
+   * Checks if scanned already in said direction.
+   * @param dir direction of agent
+   * @return true if scanned, else false
+   */
   public boolean getScanDir(int dir) {
     if (dir >= 0 && dir < 4)
       return this.scanDir[dir];
@@ -598,6 +573,11 @@ public class Node {
       return false;
   }
 
+  /*
+   * Sets scan of direction if already scanned.
+   * @param dir direction of agent
+   * @param done if agent scanned or not in said direction.
+   */
   public void setScanDir(int dir, boolean done) {
     if (dir >= 0 && dir < 4)
       this.scanDir[dir] = done;

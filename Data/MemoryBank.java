@@ -64,7 +64,6 @@ public class MemoryBank {
     }
 
   }
-
   
   /*
    * When agent's scan returns gold, adds 1 to certainty
@@ -322,20 +321,7 @@ public class MemoryBank {
    * @return type of tile (0-2) [gold/beacon/pit] else -1
    */
   public int getClosestType(Location loc, int dir) {
-    /*
-    System.out.println("\nPit");
-    for (int i = 0; i < nGrid; i++) {
-      for (int j = 0; j < nGrid; j++) {
-        System.out.print(pitMemory[i][j]+" ");
-      }
-      
-      for (int j = 0; j < nGrid; j++) {
-        System.out.print(" "+goldMemory[i][j]);
-      }
-      System.out.print("\n");
-    }
-    */
-
+ 
     if (dir==0) {  //NORTH
       for (int y = loc.r()-1; y >= 0; y--) {
         if      (goldMemory[y][loc.c()] > 0) return 0;
@@ -832,6 +818,11 @@ public class MemoryBank {
     return false;
   }
 
+  /*
+   * Calculates the location of tiles to add from beacon.
+   * @param beaconPos location of the beacon
+   * @param distance is the manhattan distance calculated by gold manager.
+   */
   public void setBeaconGrid(Location beaconPos, int distance){
     List<Location> posLoc = new ArrayList<Location>();
     Location rightPoint = new Location(beaconPos.r(), beaconPos.c() + distance);
@@ -910,6 +901,6 @@ public class MemoryBank {
     }
       */
   }
-    
+     
 }
 
