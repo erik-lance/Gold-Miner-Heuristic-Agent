@@ -38,7 +38,6 @@ public class GoldMiner {
   /**
    * Constructs the agent of the environment. Always set at (1,1) to start and
    * currently faces east.
-   * 
    * @param mGrid grants miner a referece to the mining area.
    */
   public GoldMiner(MiningArea mGrid) {
@@ -239,6 +238,11 @@ public class GoldMiner {
     pathway =new LinkedList<>(tree.searchLowCost());
   }
 
+  /*
+   * Responsible for coordinating with node trees.
+   * Helps the agent act by checking with node tree.
+   * @return true if found gold, else false.
+   */
   public boolean act(){
     Node n = pathway.remove();
     aCounter.setPathCost();
@@ -278,17 +282,13 @@ public class GoldMiner {
    * Sets the memorybank reference of the agent.
    * @param memo reference to store in agent.
    */
-  public void setMemo(MemoryBank memo) {
-    this.agentMemo = memo;
-  }
+  public void setMemo(MemoryBank memo) { this.agentMemo = memo; }
 
   /**
    * Sets the current position GoldMiner is in.
    * @param pt is a location object with coordinates.
    */
-  public void setLoc(Location pt) {
-    this.pt = new Location(pt.r(),pt.c());
-  }
+  public void setLoc(Location pt) { this.pt = new Location(pt.r(),pt.c()); }
   
   /**
    * Sets the lock on gold agent if it has
@@ -296,9 +296,7 @@ public class GoldMiner {
    * to moving only.
    * @return true if locked, else return false.
    */
-  public void setLocked(boolean lock) {
-    this.lockedMove = lock;
-  }
+  public void setLocked(boolean lock) { this.lockedMove = lock; }
 
   /*
    * Gets the memorybank stored in agent's data for referencing.

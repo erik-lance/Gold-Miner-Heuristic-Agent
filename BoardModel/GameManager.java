@@ -94,14 +94,17 @@ public class GameManager{
 
     miningArea = new MiningArea(SIZE);
     initializeGameObjects();
-    //initializeTestMap();
-    //initializeTestMap2();
     view.setMiningArea(agent.getMA());
     refreshScreen();
 
     startAI(sc);
   }
 
+  /*
+   * Responsible for helping print the AI's movements using Java's
+   * scanner. Also helps initialize the AI rationality.
+   * @param sc scanner reference to adjust print and type reading.
+   */
   private void startAI(Scanner sc){
     
     if(level == 'r')  agent.initializeTreeRandom();
@@ -130,73 +133,26 @@ public class GameManager{
       view.showAgentSuccess();
     else
       view.showAgentFail();
-    
-     
   }
 
-  //temporary
+  /*
+   * Helps refresh the screen upon printing every text
+   * of the GUI.
+   */
   private void refreshScreen(){
     view.showMiningArea();
     view.showAgentInfo(agent);
   }
 
+  /*
+   * Helps print a random number for agent's usage
+   * @param min is the minimum of the number to reach
+   * @param max is the maximum of the number to reach
+   * @return random integer from min to max.
+   */
   public static int randomNum (int min, int max){
     Random rand = new Random();
     return rand.nextInt(max - min + 1) + min; 
-  }
-
-  private void initializeTestMap(){
-    agent = new GoldMiner(miningArea);
-    miningArea.addAgent(agent);
-
-    //SPECIAL NOTE : Use locations programmatically.
-    // Subtract by 1 against board
-    //gsq = new GoldSquare(randomNum(1,SIZE-1), randomNum(1,SIZE-1));
-    gsq = new GoldSquare(13,1);
-    miningArea.addGoldSquare(gsq);
-
-    //miningArea.addPit(new Pit(0,1));
-    //miningArea.addPit(new Pit(1,0));
-    
-    //Add beacon testing
-    Beacon bcn = new Beacon(4,12);
-    miningArea.addBeacon(bcn);
-    bcn.setGoldDistance(calculateGoldDist(bcn));
-
-    Beacon bcn2 = new Beacon(7,9);
-    miningArea.addBeacon(bcn2);
-    bcn2.setGoldDistance(calculateGoldDist(bcn2));
-    
-    miningArea.addPit(new Pit(8,7));
-    miningArea.addPit(new Pit(9,6));
-    miningArea.addPit(new Pit(13,12));
-    //miningArea.addPit(new Pit(5,4));
-
-    miningArea.addPit(new Pit(15,2));
-
-  }
-  private void initializeTestMap2(){
-    agent = new GoldMiner(miningArea);
-    miningArea.addAgent(agent);
-
-    //SPECIAL NOTE : Use locations programmatically.
-    // Subtract by 1 against board
-    //gsq = new GoldSquare(randomNum(1,SIZE-1), randomNum(1,SIZE-1));
-    gsq = new GoldSquare(5,3);
-    miningArea.addGoldSquare(gsq);
-
-    //miningArea.addPit(new Pit(0,1));
-    //miningArea.addPit(new Pit(1,0));
-
-    //Add beacon testing
-    Beacon bcn = new Beacon(1,2);
-    miningArea.addBeacon(bcn);
-    bcn.setGoldDistance(calculateGoldDist(bcn));
-    
-    miningArea.addPit(new Pit(5,4));
-    miningArea.addPit(new Pit(5,2));
-    miningArea.addPit(new Pit(4,3));
-    miningArea.addPit(new Pit(6,3));
   }
 
   /**
@@ -204,7 +160,8 @@ public class GameManager{
    * grid by preparing a random position for each.
    */
   private void initializeGameObjects(){
-    //Note by erik: used the overloaded function for maintenance, remove once sure na
+    //Note by erik: used the overloaded function for maintenance for
+    //programmers to alter if ever wanted to.
     agent = new GoldMiner(miningArea, GoldMiner.defaultLoc,1);
     miningArea.addAgent(agent);
 
@@ -229,6 +186,7 @@ public class GameManager{
 
   /*
    * Returns the Manhattan distance of tiles to reach the gold
+   * @param bcn tile to get distance from
    * @return beacon distance from gold in terms of tiles calculated by column and row of bcn subtracted to gold tile.
   */
   public int calculateGoldDist(Beacon bcn) {
