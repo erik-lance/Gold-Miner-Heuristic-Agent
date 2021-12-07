@@ -2,7 +2,7 @@ package Tiles;
 import View.Symbols;
 
 /**
-  If the miner moves into square that contains the pot of gold,   the miner stops, and delivers a “search successful” message.  
+  If the miner moves into square that contains the pot of gold, the miner stops, and delivers a "search successful" message.  
 */
 public class GoldSquare extends Tile {
   /**
@@ -22,8 +22,8 @@ public class GoldSquare extends Tile {
   }
 
   /**
-   * Ends the game if player occupies this tile.
-   * Player wins
+   * Sets travel to true.
+   * @return string debug of tile name
    */
    @Override
   public String tileAbility() {
@@ -31,7 +31,10 @@ public class GoldSquare extends Tile {
     return "gold";
   }
 
-  
+  /*
+   * Helps translate gold to unicode in GUI.
+   * @return visual representation of gold in unicode.
+   */
   @Override
   public String toString(){
     return (getAgent() == null)? Symbols.GOLD_SQUARE : Symbols.AGENT_GOLD;

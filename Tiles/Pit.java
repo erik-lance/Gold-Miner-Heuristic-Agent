@@ -23,8 +23,8 @@ public class Pit extends Tile{
   }
 
   /**
-   * Ends the game if player occupies this tile.
-   * Player loses
+   * Sets travel to true.
+   * @return string debug of tile name
    */
   @Override
   public String tileAbility() {
@@ -33,7 +33,10 @@ public class Pit extends Tile{
     //END GAME
   }
 
-  
+  /*
+   * Helps translate pit to unicode in GUI.
+   * @return visual representation of pit in unicode.
+   */
   @Override
   public String toString(){
     String str;

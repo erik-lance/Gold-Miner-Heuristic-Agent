@@ -46,7 +46,11 @@ public class Beacon extends Tile{
     return goldDistance;
   }
 
-  //visual debugging
+  /*
+   * Helps debug the locations beacon reveals for agent
+   * @param nGrid the size of the grid or return of beacon
+   * @return list of locations where gold might be
+   */
   public List<Location> getRegion(int nGrid){
     Location beaconPos = getLoc();
     int distance = goldDistance;
@@ -100,8 +104,8 @@ public class Beacon extends Tile{
   }
 
   /**
-   * Finds the location of the GoldSquare
-   * 
+   * Sets the travel of beacon to true.
+   * @return debug of string beacon
    */
   @Override
   public String tileAbility() {
@@ -109,7 +113,10 @@ public class Beacon extends Tile{
     return "beacon";
   }
 
-  
+  /*
+   * Helps translate beacon to unicode in GUI.
+   * @return visual representation of beacon in unicode.
+   */
   @Override
   public String toString(){
     String str;
